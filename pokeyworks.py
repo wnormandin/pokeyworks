@@ -54,13 +54,13 @@ _icon_path = ''		# Optional Gtk window icon path
 _log_path = ''		# Optional default log path (can also generate path)
 
 # Permissions Constants (used with Linux filesystem operations)
-PERM_0777=[0o777,'fd'] # File/Dir
-PERM_0755=[0o755,'fd'] # File/Dir
-PERM_0700=[0o700,'fd'] # File/Dir
-PERM_0666=[0o666,'f']
-PERM_0644=[0o644,'f']
-PERM_0600=[0o600,'f']
-PERM_0000=[0o000,'fd'] # File/Dir
+PERM_0777=0o777
+PERM_0755=0o755
+PERM_0700=0o700
+PERM_0666=0o666
+PERM_0644=0o644
+PERM_0600=0o600
+PERM_0000=0o000
 
 # MODULE FLAGS
 _flags = {}			# Miscellaneous module availability flags and etc
@@ -472,7 +472,7 @@ def shell_command(cmd_str,sh=False):
 	proc = subprocess.Popen(cmd_str.split(),shell=sh)
 	return proc.communicate()[0]
 
-def mkdir(dpath,perms=PERM_0755[0]):
+def mkdir(dpath,perms=PERM_0755):
 	""" Creates the requested directory(ies) if they do not exist """
 	try:
 		if not os.path.exists(dpath):
