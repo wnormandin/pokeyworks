@@ -1,12 +1,11 @@
 # pokeyworks
 ## Project framework, helper functions, and other core project tools
 
-PokeyWorks is a framework containing several convenient utilities for
-general project development (path resolver, word pluralization, 
-project config files, terminal colors, and others).
+###### PokeyWorks is a framework containing several convenient utilities for general project development
+###### (path resolver, word pluralization, project config files, terminal colors, and others).
 
 ### Attributes
-Permissions Constants (used with Linux filesystem operations)
+###### Permissions Constants (used with Linux filesystem operations)
 * PERM_0777=0o777
 * PERM_0755=0o755
 * PERM_0700=0o700
@@ -15,12 +14,12 @@ Permissions Constants (used with Linux filesystem operations)
 * PERM_0600=0o600
 * PERM_0000=0o000
 
-Encoding Libraries (True/False) Required for some PokeyConfig operations
+###### Encoding Libraries (True/False) Required for some PokeyConfig operations
 * JSON_ENABLED
 * YAML_ENABLED
 
 ### Methods
-Logging
+###### Logging
 * __setup_logger(name, level, lpath='./tmp/last_run.log',fpath=\_\_name\_\_)__
   * name = an arbitrary name for this logger
   * level = logging.LEVEL, options are : logging.DEBUG, logging.INFO, logging.WARNING, logging.ERROR
@@ -29,24 +28,24 @@ Logging
   * fpath = intended execution base_path (either default, or the calling script's \_\_name\_\_ field contents)
   * returns a logging.Logger, read the [documentation](https://docs.python.org/2/library/logging.html) for usage
 
-Word Pluralization
+###### Word Pluralization
 * __plurals(word,qty)__
   * word = the word to be pluralized in American English
   * qty = the quantity of the item
   * returns a string containing the pluralized version of word, ~90% accurate
 
-Terminal Colors
+###### Terminal Colors
 * __color_wrap(val,color)__
   * val = a string to be wrapped
   * color = the ASCII color code to use
   * returns val with the color code prepended, and an ASCII code to return to normal formatting following the string
 
-File Paths
+###### File Paths
 * __resource_path(fpath,rel_path)__
   * where fpath is the base_dir and rel_path is the relative path to the resource
   * returns the absolute path to the resource in rel_path
 
-Misc.
+###### Misc.
 * __chk_deps(mods)__
   * mods is in ['gtk','sys','multiprocessing','os','logging','csv','socket','random','time','subprocess']
   * returns True if the passed module list is successfully loaded
@@ -74,7 +73,7 @@ Misc.
   * returns dpath,perms if successful
 
 ### Classes
-Application Configuration
+###### Application Configuration
 * __PokeyConfig.\_\_init\_\_(self, fpath, conf_type=1, auto_apply=False)__
   * self = self instance of class PokeyConfig
   * fpath = path to a JSON, YAML, delimited, or Base64-encoded JSON file (prefer basic elements!)
@@ -112,7 +111,7 @@ Application Configuration
     * PokeyConfig.rm_config
     * PokeyConfig.convert_file_path
 
-Daemon class
+###### Daemon class
 * __Daemon.\_\_init\_\_(self, pidfile, stdin='/dev/null', stdout='/dev/null', stderr='/dev/null')__
   * Daemon superclass, the Daemon.run method __must__ be overruled by the child class
   * Usage:
@@ -122,7 +121,7 @@ Daemon class
     * inst.stop()  \# Closes the daemon pidfile
   * The magical double-fork happens in the DaemonChild.daemonize() method invoked in DaemonChild.start()
 
-Terminal Colors (basic ASCII list)
+###### Terminal Colors (basic ASCII list)
 * __Color__
   * Color.BLACK_ON_GREEN = '\x1b[1;30;42m'
   * Color.PURPLE = '\033[95m'
