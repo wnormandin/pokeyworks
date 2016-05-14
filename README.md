@@ -19,20 +19,6 @@ Encoding Libraries (True/False) Required for some PokeyConfig operations
 * JSON_ENABLED
 * YAML_ENABLED
 
-Terminal Colors (basic ASCII list)
-* class Color
-* Color.BLACK_ON_GREEN = '\x1b[1;30;42m'
-* Color.PURPLE = '\033[95m'
-* Color.CYAN = '\033[96m'
-* Color.DARKCYAN = '\033[36m'
-* Color.BLUE = '\033[94m'
-* Color.GREEN = '\033[92m'
-* Color.YELLOW = '\033[93m'
-* Color.RED = '\033[91m'
-* Color.BOLD = '\033[1m'
-* Color.UNDERLINE = '\033[4m'
-* Color.END = '\033[0m'
-
 ### Methods
 Logging
 * setup_logger(name, level, lpath='./tmp/last_run.log',fpath=\_\_name\_\_)
@@ -74,6 +60,18 @@ Misc.
   * where s is a datetime string of any format
   * returns the standardized date datetime.strptime(s, "%Y-%m-%d")
   * returns False if conversion fails
+* shell_command(cmd_str, sh=False)
+  * cmd_str is a linux shell command string
+  * sh indicates whether to execute in a subshell, default to False for security
+  * uses subprocess.Popen to execute the command
+  * returns the resulting output from subprocess.Popen...communicate()[0]
+* install_module(path, mod)
+  * installs the specified module at the specified path using easy_install
+  * use when you absolutely must install a dependency locally
+* mkdir(dpath, perms=PERM_0755[0])
+  * creates the directory specified in dpath with the permissions set by perms, if it does not exist
+  * returns a 2-tuple - ( False, Exception ) in the case of an Exception
+  * returns dpath,perms if successful
 
 ### Classes
 Application Configuration
@@ -113,3 +111,30 @@ Application Configuration
   * Uses :
     * PokeyConfig.rm_config
     * PokeyConfig.convert_file_path
+
+Daemon class
+* Daemon.\_\_init\_\_(self, pidfile, stdin='/dev/null', stdout='/dev/null', stderr='/dev/null')
+  * Daemon superclass, the Daemon.run method __must__ be overruled by the child class
+  * Usage:
+    * inst = DaemonChild(pidfile_path)  \# Initialize the child class instance
+    * inst.start()  \# Performs basic integrity checks, then double-forks to orphaned process, executing inst.run()
+    * inst.restart()  \# Restarts the daemon, running inst.stop(); inst.start()
+    * inst.stop()  \# Closes the daemon pidfile
+  * The magical double-fork happens in the DaemonChild.daemonize() method invoked in DaemonChild.start()
+
+Terminal Colors (basic ASCII list)
+* Color
+  * Color.BLACK_ON_GREEN = '\x1b[1;30;42m'
+  * Color.PURPLE = '\033[95m'
+  * Color.CYAN = '\033[96m'
+  * Color.DARKCYAN = '\033[36m'
+  * Color.BLUE = '\033[94m'
+  * Color.GREEN = '\033[92m'
+  * Color.YELLOW = '\033[93m'
+  * Color.RED = '\033[91m'
+  * Color.BOLD = '\033[1m'
+  * Color.UNDERLINE = '\033[4m'
+  * Color.END = '\033[0m'
+* ColorIze.\_\_init\_\_(self, val, opts)
+  * wraps the passed_val with the list in opts
+  * no return, access the colorized attribute ColorIze.colorized
