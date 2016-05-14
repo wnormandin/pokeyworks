@@ -21,7 +21,7 @@ Encoding Libraries (True/False) Required for some PokeyConfig operations
 
 ### Methods
 Logging
-* setup_logger(name, level, lpath='./tmp/last_run.log',fpath=\_\_name\_\_)
+* __setup_logger(name, level, lpath='./tmp/last_run.log',fpath=\_\_name\_\_)__
   * name = an arbitrary name for this logger
   * level = logging.LEVEL, options are : logging.DEBUG, logging.INFO, logging.WARNING, logging.ERROR
     * if the level is logging.DEBUG, an additional logging handler is added for last_run, otherwise the output will default to console output only
@@ -30,52 +30,52 @@ Logging
   * returns a logging.Logger, read the [documentation](https://docs.python.org/2/library/logging.html) for usage
 
 Word Pluralization
-* plurals(word,qty)
+* __plurals(word,qty)__
   * word = the word to be pluralized in American English
   * qty = the quantity of the item
   * returns a string containing the pluralized version of word, ~90% accurate
 
 Terminal Colors
-* color_wrap(val,color)
+* __color_wrap(val,color)__
   * val = a string to be wrapped
   * color = the ASCII color code to use
   * returns val with the color code prepended, and an ASCII code to return to normal formatting following the string
 
 File Paths
-* resource_path(fpath,rel_path)
+* __resource_path(fpath,rel_path)__
   * where fpath is the base_dir and rel_path is the relative path to the resource
   * returns the absolute path to the resource in rel_path
 
 Misc.
-* chk_deps(mods)
+* __chk_deps(mods)__
   * mods is in ['gtk','sys','multiprocessing','os','logging','csv','socket','random','time','subprocess']
   * returns True if the passed module list is successfully loaded
-* read_csv(fpath, delim=',',qchar="'")
+* __read_csv(fpath, delim=',',qchar="'")__
   * fpath = inputh file path
   * delim = field delimiter
   * qchar = quote character to wrap strings containing delim
   * returns a list = [row for row in csvobj] where csvobj is the successfully read file
   * Exceptions raised by default
-* valid_date(s)
+* __valid_date(s)__
   * where s is a datetime string of any format
   * returns the standardized date datetime.strptime(s, "%Y-%m-%d")
   * returns False if conversion fails
-* shell_command(cmd_str, sh=False)
+* __shell_command(cmd_str, sh=False)__
   * cmd_str is a linux shell command string
   * sh indicates whether to execute in a subshell, default to False for security
   * uses subprocess.Popen to execute the command
   * returns the resulting output from subprocess.Popen...communicate()[0]
-* install_module(path, mod)
+* __install_module(path, mod)__
   * installs the specified module at the specified path using easy_install
   * use when you absolutely must install a dependency locally
-* mkdir(dpath, perms=PERM_0644)
+* __mkdir(dpath, perms=PERM_0644)__
   * creates the directory specified in dpath with the permissions set by perms, if it does not exist
   * returns a 2-tuple - ( False, Exception ) in the case of an Exception
   * returns dpath,perms if successful
 
 ### Classes
 Application Configuration
-* PokeyConfig.\_\_init\_\_(self, fpath, conf_type=1, auto_apply=False)
+* __PokeyConfig.\_\_init\_\_(self, fpath, conf_type=1, auto_apply=False)__
   * self = self instance of class PokeyConfig
   * fpath = path to a JSON, YAML, delimited, or Base64-encoded JSON file (prefer basic elements!)
   * conf_type=1 : configuration type designator, utility will make a guess but currently buggy, required
@@ -86,7 +86,7 @@ Application Configuration
   * PokeyConfig.conf_dict contains the loaded config, where each key corresponds to a dictionary key from the configuration file
   * If auto_apply==True, each key in the PokeyConfig.conf_dict is applied as an attribute of the class, i.e. PokeyConfig.key=val
   * Requirements : json (in standard lib), yaml (for yaml operations only), base64, cStringIO
-* PokeyConfig.load_config(self, conf_type, inpath=None)
+* __PokeyConfig.load_config(self, conf_type, inpath=None)__
   * Invoked by \_\_init\_\_ to load the file path
   * Can be invoked separately to open additional files to replace the exiting conf_dict
   * Automatically converts delimited files
@@ -96,7 +96,7 @@ Application Configuration
     * PokeyConfig.load_json
     * PokeyConfig.load_yaml
     * PokeyConfig.do_decode - used to decode base64-encoded JSON files (default extension .cfg)
-* PokeyConfig.write_config(self,**kw)
+* __PokeyConfig.write_config(self,**kw)__
   * currently expects no kwargs
   * used to save the loaded configuration, based on the loaded_type class attribute
   * PokeyConfig.loaded_type is set during the load_config routine, if you are manually changing the loaded configurations, be sure to set the loaded_type to your desired output before calling write_config
@@ -104,7 +104,7 @@ Application Configuration
     * PokeyConfig.save_json
     * PokeyConfig.save_yaml
     * PokeyConfig.do_encode
-* PokeyConfig.convert_config(self, out_type)
+* __PokeyConfig.convert_config(self, out_type)__
   * out_type is in [PokeyConfig.json, PokeyConfig.yaml, PokeyConfig.encoded]
   * converts the configuration, saving the config as a new file with an appropriate extension
   * removes the existing configuration file
@@ -113,7 +113,7 @@ Application Configuration
     * PokeyConfig.convert_file_path
 
 Daemon class
-* Daemon.\_\_init\_\_(self, pidfile, stdin='/dev/null', stdout='/dev/null', stderr='/dev/null')
+* __Daemon.\_\_init\_\_(self, pidfile, stdin='/dev/null', stdout='/dev/null', stderr='/dev/null')__
   * Daemon superclass, the Daemon.run method __must__ be overruled by the child class
   * Usage:
     * inst = DaemonChild(pidfile_path)  \# Initialize the child class instance
@@ -123,7 +123,7 @@ Daemon class
   * The magical double-fork happens in the DaemonChild.daemonize() method invoked in DaemonChild.start()
 
 Terminal Colors (basic ASCII list)
-* Color
+* __Color__
   * Color.BLACK_ON_GREEN = '\x1b[1;30;42m'
   * Color.PURPLE = '\033[95m'
   * Color.CYAN = '\033[96m'
@@ -135,6 +135,6 @@ Terminal Colors (basic ASCII list)
   * Color.BOLD = '\033[1m'
   * Color.UNDERLINE = '\033[4m'
   * Color.END = '\033[0m'
-* ColorIze.\_\_init\_\_(self, val, opts)
+* __ColorIze.\_\_init\_\_(self, val, opts)__
   * wraps the passed_val with the list in opts
   * no return, access the colorized attribute ColorIze.colorized
