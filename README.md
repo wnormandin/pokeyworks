@@ -42,20 +42,24 @@ Logging
   * lpath = output path for logging output, will attempt to create if it does not exist
   * fpath = intended execution base_path (either default, or the calling script's \_\_name\_\_ field contents)
   * returns a logging.Logger, read the [documentation](https://docs.python.org/2/library/logging.html) for usage
+
 Word Pluralization
 * plurals(word,qty)
   * word = the word to be pluralized in American English
   * qty = the quantity of the item
   * returns a string containing the pluralized version of word, ~90% accurate
+
 Terminal Colors
 * color_wrap(val,color)
   * val = a string to be wrapped
   * color = the ASCII color code to use
   * returns val with the color code prepended, and an ASCII code to return to normal formatting following the string
+
 File Paths
 * resource_path(fpath,rel_path)
   * where fpath is the base_dir and rel_path is the relative path to the resource
   * returns the absolute path to the resource in rel_path
+
 Misc.
 * chk_deps(mods)
   * mods is in ['gtk','sys','multiprocessing','os','logging','csv','socket','random','time','subprocess']
