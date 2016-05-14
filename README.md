@@ -7,13 +7,13 @@ project config files, terminal colors, and others).
 
 ### Attributes
 Permissions Constants (used with Linux filesystem operations)
-* PERM_0777=[0o777,'fd'] # File/Dir
-* PERM_0755=[0o755,'fd'] # File/Dir
-* PERM_0700=[0o700,'fd'] # File/Dir
-* PERM_0666=[0o666,'f']
-* PERM_0644=[0o644,'f']
-* PERM_0600=[0o600,'f']
-* PERM_0000=[0o000,'fd'] # File/Dir
+* PERM_0777=0o777
+* PERM_0755=0o755
+* PERM_0700=0o700
+* PERM_0666=0o666
+* PERM_0644=0o644
+* PERM_0600=0o600
+* PERM_0000=0o000
 
 Encoding Libraries (True/False) Required for some PokeyConfig operations
 * JSON_ENABLED
@@ -68,7 +68,7 @@ Misc.
 * install_module(path, mod)
   * installs the specified module at the specified path using easy_install
   * use when you absolutely must install a dependency locally
-* mkdir(dpath, perms=PERM_0755[0])
+* mkdir(dpath, perms=PERM_0644)
   * creates the directory specified in dpath with the permissions set by perms, if it does not exist
   * returns a 2-tuple - ( False, Exception ) in the case of an Exception
   * returns dpath,perms if successful
