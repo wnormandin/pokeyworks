@@ -19,6 +19,7 @@ h="https://github.com/wnormandin/hosting_tools.git"
 s="https://github.com/wnormandin/social_media_bots.git"
 g="https://github.com/wnormandin/pokeygame.git"
 n="https://github.com/wnormandin/network_tools.git"
+x="https://github.com/wnormandin/resources.git"
 
 usage=(
     "Usage :  ./pokeyclone.sh [OPTION(S)]... | -r [REPO]... | -h"
@@ -28,6 +29,7 @@ usage=(
     "-n         : Clone network tools"
     "-s         : Clone social media bots"
     "-a         : Clone all core repositories"
+    "-x         : Clone extras in the /resources repository"
     "-e         : Add to PYTHONPATH"
     "-h         : Display usage message"
     "-l         : Exclude PokeyWorks"
@@ -45,6 +47,7 @@ print_usage(){
 EXCLUDE=
 REPO=
 ADD_PATH=
+RESOURCES=
 LIST=()
 while getopts "tgnsaehlr:" OPTION
 do
@@ -55,6 +58,7 @@ do
         n) LIST+=("$n");;
         s) LIST+=("$s");;
         a) LIST+=("$h" "$g" "$n" "$s");;
+        x) RESOURCES=true;;
         e) ADD_PATH=true;;
         l) EXCLUDE=true;;
         r) REPO=$OPTARG;;
@@ -86,6 +90,10 @@ fi
 
 if [[ -z $EXCLUDE ]]; then
     LIST+=("$w")
+fi
+
+if [[ -z $RESOURCES ]]; then
+    LIST+=("$x")
 fi
 
 # Clone repo list
