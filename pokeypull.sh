@@ -3,15 +3,15 @@
 # Pulls changes down to all pokey repos (assumes clean working branch)
 
 paths=(
-    "/home/bill/python/hosting_tools/"
-    "/home/bill/python/network_tools/"
-    "/home/bill/python/pokeygame/"
-    "/home/bill/python/pokeyworks/"
-    "/home/bill/python/resources/"
-    "/home/bill/python/social_media_bots/"
+    "<insert your path>/hosting_tools/"
+    "<insert your path>/network_tools/"
+    "<insert your path>/pokeygame/"
+    "<insert your path>/pokeyworks/"
+    "<insert your path>/resources/"
+    "<insert your path>/social_media_bots/"
     )
 
 for p in ${paths[@]};
 do
-    echo "$(cd $p; git pull origin master)"
+    echo "$(cd $p; git pull origin master 2> /dev/null)"
 done
