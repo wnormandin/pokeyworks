@@ -38,7 +38,7 @@ usage=(
     "             where REPO is in the current path"
     )
 
-print_usage(){
+print_usage() {
     msg="This utility clones repositories into the current directory"
     echo -e "$msg"
     printf "%s\n" "${usage[@]}"
