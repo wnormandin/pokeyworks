@@ -92,7 +92,7 @@ if [[ -z $EXCLUDE ]]; then
     LIST+=("$w")
 fi
 
-if [[ -z $RESOURCES ]]; then
+if [[ ! -z $RESOURCES ]]; then
     LIST+=("$x")
 fi
 
