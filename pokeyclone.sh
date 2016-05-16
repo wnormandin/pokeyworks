@@ -49,7 +49,7 @@ REPO=
 ADD_PATH=
 RESOURCES=
 LIST=()
-while getopts "tgnsaehlr:" OPTION
+while getopts "tgnsaehlxr:" OPTION
 do
     case $OPTION in
         h) print_usage; exit 1;;
