@@ -67,7 +67,7 @@
 * __install_module(path, mod)__
   * installs the specified module at the specified path using easy_install
   * use when you absolutely must install a dependency locally
-* __mkdir(dpath, perms=PERM_0644)__
+* __mkdir(dpath, perms=PERM_0755)__
   * creates the directory specified in dpath with the permissions set by perms, if it does not exist
   * returns a 2-tuple - ( False, Exception ) in the case of an Exception
   * returns dpath,perms if successful
