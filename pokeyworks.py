@@ -130,6 +130,13 @@ def read_csv(fpath, delim=',',qchar="'"):
 
 #*************************** Misc Utilities ****************************
 
+# Function accepts multiple line input or raw_input, returns a multiline string
+def multi_raw_input(raw=False):
+	# Must print prompt before calling this function
+	sentinel = ''
+	if not raw: return '\n'.join(iter(input, sentinel))
+	return '\n'.join(iter(raw_input, sentinel))
+
 # Validates the argument format if date type
 def valid_date(s):
 	hgt_logger.debug('\tvalid_date args : {}'.format(s))
